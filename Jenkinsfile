@@ -1,10 +1,13 @@
 pipeline {
-    agent none
+    agent { label 'linux' }
     stages {
-        stage('Build') {
-            agent any
+        stage('Preparation') {
             steps {
                 sh 'cmake -DBUILD_TESTS=ON -B build'
+            }
+        }
+        stage('Build') {
+            steps {
                 sh 'cmake --build build/'
             }
         }
