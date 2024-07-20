@@ -4,7 +4,8 @@ pipeline {
         stage('Build') {
             agent any
             steps {
-                sh 'echo Tests'
+                sh 'cmake -DBUILD_TESTS=ON -B build'
+                sh 'cmake --build build/'
             }
         }
     }
