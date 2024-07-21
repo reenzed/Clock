@@ -1,129 +1,54 @@
 cmake_minimum_required(VERSION 3.22)
 
+set(REPO_TAG "boost-1.85.0")
+list(APPEND Repo_Name
+  BoostJson           #1
+  BoostAlign          #2
+  BoostAssert         #3
+  BoostConfig         #4
+  BoostContainer      #5
+  BoostContainerHash  #6
+  BoostCore           #7
+  BoostSystem         #8
+  BoostThrowException #9
+  BoostIntrusive      #10
+  BoostStaticAssert   #11
+  BoostMove           #12
+  BoostDescribe       #13
+  BoostMp11           #14
+  BoostEndian         #15
+  BoostVariant2       #16
+  BoostWinapi         #17
+  BoostPredef         #18
+)
+list(APPEND Repo_Path
+  https://github.com/boostorg/json.git            #1
+  https://github.com/boostorg/align.git           #2
+  https://github.com/boostorg/assert.git          #3
+  https://github.com/boostorg/config.git          #4
+  https://github.com/boostorg/container.git       #5
+  https://github.com/boostorg/container_hash.git  #6
+  https://github.com/boostorg/core.git            #7
+  https://github.com/boostorg/system.git          #8
+  https://github.com/boostorg/throw_exception.git #9
+  https://github.com/boostorg/intrusive.git       #10
+  https://github.com/boostorg/static_assert.git   #11
+  https://github.com/boostorg/move.git            #12
+  https://github.com/boostorg/describe.git        #13
+  https://github.com/boostorg/mp11.git            #14
+  https://github.com/boostorg/endian.git          #15
+  https://github.com/boostorg/variant2.git        #16
+  https://github.com/boostorg/winapi.git          #17
+  https://github.com/boostorg/predef.git          #18
+)
+
 include(FetchContent)
 
-FetchContent_Declare(
-  BoostJson
-  GIT_REPOSITORY https://github.com/boostorg/json.git
-  GIT_TAG        boost-1.85.0
-)
-FetchContent_MakeAvailable(BoostJson)
-
-FetchContent_Declare(
-  BoostAlign
-  GIT_REPOSITORY https://github.com/boostorg/align.git
-  GIT_TAG        boost-1.85.0
-)
-FetchContent_MakeAvailable(BoostAlign)
-
-FetchContent_Declare(
-  BoostAssert
-  GIT_REPOSITORY https://github.com/boostorg/assert.git
-  GIT_TAG        boost-1.85.0
-)
-FetchContent_MakeAvailable(BoostAssert)
-
-FetchContent_Declare(
-  BoostConfig
-  GIT_REPOSITORY https://github.com/boostorg/config.git
-  GIT_TAG        boost-1.85.0
-)
-FetchContent_MakeAvailable(BoostConfig)
-
-FetchContent_Declare(
-  BoostContainer
-  GIT_REPOSITORY https://github.com/boostorg/container.git
-  GIT_TAG        boost-1.85.0
-)
-FetchContent_MakeAvailable(BoostContainer)
-
-FetchContent_Declare(
-  BoostContainerHash
-  GIT_REPOSITORY https://github.com/boostorg/container_hash.git
-  GIT_TAG        boost-1.85.0
-)
-FetchContent_MakeAvailable(BoostContainerHash)
-
-FetchContent_Declare(
-  BoostCore
-  GIT_REPOSITORY https://github.com/boostorg/core.git
-  GIT_TAG        boost-1.85.0
-)
-FetchContent_MakeAvailable(BoostCore)
-
-FetchContent_Declare(
-  BoostSystem
-  GIT_REPOSITORY https://github.com/boostorg/system.git
-  GIT_TAG        boost-1.85.0
-)
-FetchContent_MakeAvailable(BoostSystem)
-
-FetchContent_Declare(
-  BoostThrowException
-  GIT_REPOSITORY https://github.com/boostorg/throw_exception.git
-  GIT_TAG        boost-1.85.0
-)
-FetchContent_MakeAvailable(BoostThrowException)
-
-FetchContent_Declare(
-  BoostIntrusive
-  GIT_REPOSITORY https://github.com/boostorg/intrusive.git
-  GIT_TAG        boost-1.85.0
-)
-FetchContent_MakeAvailable(BoostIntrusive)
-
-FetchContent_Declare(
-  BoostStaticAssert
-  GIT_REPOSITORY https://github.com/boostorg/static_assert.git
-  GIT_TAG        boost-1.85.0
-)
-FetchContent_MakeAvailable(BoostStaticAssert)
-
-FetchContent_Declare(
-  BoostMove
-  GIT_REPOSITORY https://github.com/boostorg/move.git
-  GIT_TAG        boost-1.85.0
-)
-FetchContent_MakeAvailable(BoostMove)
-
-FetchContent_Declare(
-  BoostDescribe
-  GIT_REPOSITORY https://github.com/boostorg/describe.git
-  GIT_TAG        boost-1.85.0
-)
-FetchContent_MakeAvailable(BoostDescribe)
-
-FetchContent_Declare(
-  BoostMp11
-  GIT_REPOSITORY https://github.com/boostorg/mp11.git
-  GIT_TAG        boost-1.85.0
-)
-FetchContent_MakeAvailable(BoostMp11)
-
-FetchContent_Declare(
-  BoostEndian
-  GIT_REPOSITORY https://github.com/boostorg/endian.git
-  GIT_TAG        boost-1.85.0
-)
-FetchContent_MakeAvailable(BoostEndian)
-
-FetchContent_Declare(
-  BoostVariant2
-  GIT_REPOSITORY https://github.com/boostorg/variant2.git
-  GIT_TAG        boost-1.85.0
-)
-FetchContent_MakeAvailable(BoostVariant2)
-
-FetchContent_Declare(
-  BoostWinapi
-  GIT_REPOSITORY https://github.com/boostorg/winapi.git
-  GIT_TAG        boost-1.85.0
-)
-FetchContent_MakeAvailable(BoostWinapi)
-
-FetchContent_Declare(
-  BoostPredef
-  GIT_REPOSITORY https://github.com/boostorg/predef.git
-  GIT_TAG        boost-1.85.0
-)
-FetchContent_MakeAvailable(BoostPredef)
+foreach(REPO_NAME REPO_PATH IN ZIP_LISTS Repo_Name Repo_Path)
+  FetchContent_Declare(
+    ${REPO_NAME}
+    GIT_REPOSITORY ${REPO_PATH}
+    GIT_TAG        ${REPO_TAG}
+  )
+  FetchContent_MakeAvailable(${REPO_NAME})
+endforeach()
